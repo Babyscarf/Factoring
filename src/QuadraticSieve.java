@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+=======
+
+import java.util.ArrayList;
+
+import java.lang.*;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+
+>>>>>>> 5eee1a0d875c9cff1f7ff7425ba1947471831d62
 import java.lang.*;
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -135,6 +146,7 @@ public class Pollard {
            return d;
     }
 
+<<<<<<< HEAD
 //    public int gcd(int a, int n) {
 //
 //        if (n == 0)
@@ -142,6 +154,28 @@ public class Pollard {
 //        return gcd(n, a % n);
 //
 //    }
+=======
+}
+/*public class QuadraticSieve {
+    static ArrayList<Integer> prim = new ArrayList<>();
+    public static void main(String[] args) {
+
+        QuadraticSieve test = new QuadraticSieve();
+        int bSmooth = test. b_Smooth();
+        test.SieveOfEratosthenes(bSmooth);
+        for(int i=1; i<prim.size(); i++){
+
+           int value= test.Jacobi(87463,prim.get(i));
+           if(value!=1) {
+               prim.remove(i);
+               i--;
+           }
+        }
+        // test.trial_division(6720);
+
+       System.out.println(prim.toString());
+
+>>>>>>> 5eee1a0d875c9cff1f7ff7425ba1947471831d62
 
  /*   public int f(int x, int y) {
         return (x * x + 1) % y;
@@ -212,4 +246,10 @@ public class Pollard {
 
 
 */
+<<<<<<< HEAD
 }
+=======
+
+
+//}
+>>>>>>> 5eee1a0d875c9cff1f7ff7425ba1947471831d62
