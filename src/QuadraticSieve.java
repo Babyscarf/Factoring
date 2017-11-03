@@ -91,7 +91,7 @@ public class Pollard {
            return d;
     }
 
->>>>>>> 4f9f1558c89a875b0ff82375a5f4f00c94153b2e
+}
 /*public class QuadraticSieve {
     static ArrayList<Integer> prim = new ArrayList<>();
     public static void main(String[] args) {

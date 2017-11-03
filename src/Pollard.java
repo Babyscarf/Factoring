@@ -1,4 +1,3 @@
-import java.lang.Math;
 import java.util.ArrayList;
 
 import java.lang.*;
@@ -7,6 +6,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 
 public class Pollard{
+    static ArrayList<BigInteger> ans=new ArrayList<>();
     ArrayList<Integer> prim=new ArrayList<>();
     public static final BigInteger TWO=new BigInteger("2");
     public static SecureRandom random= new SecureRandom();//Handles bits up to 128, whereas Random class only handles bits up to 48
@@ -14,22 +14,31 @@ public class Pollard{
 
     public static void main(String[] args) {
         Pollard t=new Pollard();
-        BigInteger n= new BigInteger("256");
+        BigInteger n= new BigInteger("11233425");
         if(n.isProbablePrime(20)) {
-            System.out.println("true");
+            System.out.println("prime");
             System.exit(1);
         }
             // getFactors();
         else if(n.bitLength()>66){
             System.out.println("bigger than 66");
             System.exit(1);
-
-
         }
+        int counter = 0;
+        while (counter++ < 1000) {
+            if (n.isProbablePrime(20)) {
+                ans.add(n);
+                System.out.println( ans.toString());
+                System.exit(1);
+            }
+            BigInteger answ = t.rh(n);
+            ans.add(answ);
+            n=n.divide(answ);
+        }
+
         BigInteger div = t.rh(n);
         System.out.println(n.divide(div) + " " + div);
     }
-
 
     public void getFactors(BigInteger n) {
         if(n.isProbablePrime(20))
@@ -56,21 +65,14 @@ public class Pollard{
         //System.out.println(x.abs().subtract(y).abs());
 
         if(n.mod(TWO).equals(BigInteger.ZERO)) {
-            System.out.println("mod 2");	
             return TWO;
         }
         while (d.compareTo(BigInteger.ONE)==0) {
-//            x = func(x, rand, n);
-//            y = func(y, rand, n);
-//            y = func(y, rand, n);
         	x = g(x, n);
         	y = g(g(y, n), n);
-        	System.out.println("x= " + x + " y=" + y);
             d = x.subtract(y).abs().gcd(n);
-            System.out.println(d);
-
         }
-       System.out.println(" d=" + d);
+       System.out.println("divisor: " + d);
         // x=y;
        return d;
     }
