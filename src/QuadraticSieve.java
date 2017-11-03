@@ -1,4 +1,4 @@
-import java.lang.Math;
+
 import java.util.ArrayList;
 
 mport java.lang.*;
@@ -6,34 +6,46 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
+import java.lang.*;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+
 
 public class Pollard {
+   static ArrayList<BigInteger> ans=new ArrayList<>();
     ArrayList<Integer> prim=new ArrayList<>();
     public static final BigInteger TWO=new BigInteger("2");
     public static SecureRandom random= new SecureRandom();//Handles bits up to 128, whereas Random class only handles bits up to 48
 
 
     public static void main(String[] args) {
-        Pollard t=new Pollard();
-        BigInteger n= new BigInteger("256");
-        if(n.isProbablePrime(20)) {
-            System.out.println("true");
-            System.exit(1);
-        }
-            // getFactors();
-        else if(n.bitLength()>66){
+        Pollard t = new Pollard();
+        BigInteger n = new BigInteger("20");
+        if (n.bitLength() > 66) {
             System.out.println("bigger than 66");
             System.exit(1);
-
-
         }
-        BigInteger div= t.rh(n);
-        System.out.println(n.divide(div) + " " + div);
-       // System.out.println("false");
-      // while( t.rh(n).compareTo(BigInteger.ZERO)==0)
-        //   System.out.println("hej");  ;
-    }
+            while (true) {
+                if (n.isProbablePrime(20)) {
+                    ans.add(n);
 
+                    System.out.println( ans.toString());
+                    System.exit(1);
+                }
+                BigInteger answ = t.rh(n);
+               // System.out.println(answ);
+                ans.add(answ);
+                System.out.println( ans.toString());
+                n=n.divide(answ);
+            }
+
+           // System.out.println(n.divide(div) + " " + div);
+            // System.out.println("false");
+            // while( t.rh(n).compareTo(BigInteger.ZERO)==0)
+            //   System.out.println("hej");  ;
+
+    }
 
     public void getFactors(BigInteger n) {
         if(n.isProbablePrime(20))
@@ -51,7 +63,7 @@ public class Pollard {
 
     public BigInteger rh(BigInteger n) {
         BigInteger x=new BigInteger(n.bitLength(),random);
-        BigInteger y=new BigInteger("125");;
+        BigInteger y=x;
         BigInteger rand=new BigInteger(n.bitLength(),random);
         BigInteger d= BigInteger.ONE;
        // BigInteger v=  x.abs().subtract(y).abs();
@@ -60,14 +72,14 @@ public class Pollard {
 
             if(n.mod(TWO).equals(BigInteger.ZERO)) {
 
-                System.out.println("mod 2");
+                //System.out.println("mod 2");
                 return TWO;
             }
         while (d.compareTo(BigInteger.ONE)==0) {
             x = func(x, rand, n);
             y = func(y, rand, n);
             y = func(y, rand, n);
-            System.out.println("x= " + x + " y=" + y);
+           // System.out.println("x= " + x + " y=" + y);
             d = x.abs().subtract(y).abs().gcd(n);
             System.out.println(d);
 
@@ -78,6 +90,7 @@ public class Pollard {
             // x=y;
            return d;
     }
+
 /*public class QuadraticSieve {
     static ArrayList<Integer> prim = new ArrayList<>();
     public static void main(String[] args) {
