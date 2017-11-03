@@ -1,8 +1,84 @@
 import java.lang.Math;
 import java.util.ArrayList;
 
+mport java.lang.*;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.ArrayList;
 
-public class QuadraticSieve {
+
+public class Pollard {
+    ArrayList<Integer> prim=new ArrayList<>();
+    public static final BigInteger TWO=new BigInteger("2");
+    public static SecureRandom random= new SecureRandom();//Handles bits up to 128, whereas Random class only handles bits up to 48
+
+
+    public static void main(String[] args) {
+        Pollard t=new Pollard();
+        BigInteger n= new BigInteger("256");
+        if(n.isProbablePrime(20)) {
+            System.out.println("true");
+            System.exit(1);
+        }
+            // getFactors();
+        else if(n.bitLength()>66){
+            System.out.println("bigger than 66");
+            System.exit(1);
+
+
+        }
+        BigInteger div= t.rh(n);
+        System.out.println(n.divide(div) + " " + div);
+       // System.out.println("false");
+      // while( t.rh(n).compareTo(BigInteger.ZERO)==0)
+        //   System.out.println("hej");  ;
+    }
+
+
+    public void getFactors(BigInteger n) {
+        if(n.isProbablePrime(20))
+            return;//prime
+        else if(n.bitLength()>66)
+        return;//"failure"
+
+
+    }
+
+    public BigInteger func(BigInteger a, BigInteger b, BigInteger n ){
+
+        return  a.multiply(a).add(b).mod(n);
+    }
+
+    public BigInteger rh(BigInteger n) {
+        BigInteger x=new BigInteger(n.bitLength(),random);
+        BigInteger y=new BigInteger("125");;
+        BigInteger rand=new BigInteger(n.bitLength(),random);
+        BigInteger d= BigInteger.ONE;
+       // BigInteger v=  x.abs().subtract(y).abs();
+       // System.out.println("x:" + x + " y=" + y );
+        //System.out.println(x.abs().subtract(y).abs());
+
+            if(n.mod(TWO).equals(BigInteger.ZERO)) {
+
+                System.out.println("mod 2");
+                return TWO;
+            }
+        while (d.compareTo(BigInteger.ONE)==0) {
+            x = func(x, rand, n);
+            y = func(y, rand, n);
+            y = func(y, rand, n);
+            System.out.println("x= " + x + " y=" + y);
+            d = x.abs().subtract(y).abs().gcd(n);
+            System.out.println(d);
+
+        }
+
+
+           System.out.println(" d=" + d);
+            // x=y;
+           return d;
+    }
+/*public class QuadraticSieve {
     static ArrayList<Integer> prim = new ArrayList<>();
     public static void main(String[] args) {
 
@@ -88,15 +164,15 @@ public class QuadraticSieve {
             System.out.println(prim.toString());
         }
 
-    /*Determine if a number a is a quadratic residue to the modulus p, a^(p-1/2). If output
+    Determine if a number a is a quadratic residue to the modulus p, a^(p-1/2). If output
       is 1, then there is a perfect square such that there exist a x so x^2=a mod p.
       If output is -1 there is NO perfect square.
       Output 0 means that a|p. However, we'll ignore that output.
       We'll save all p that gives the output 1 and erase from the ArrayList given from
-      SieveOfEratosthenes method otherwise*/
+      SieveOfEratosthenes method otherwise
 
     public int Jacobi(int a, int n)
-/* Precondition: a, n >= 0; n is odd */
+Precondition: a, n >= 0; n is odd 
     {
         int ans=0;
         if (a == 0)
@@ -134,13 +210,13 @@ public class QuadraticSieve {
 //        }
 //        while (a!=0) {
 //            while ((a % 2)==0) {
-//         /* Process factors of 2: Jacobi(2,b)=-1 if b=3,5 (mod 8) */
+//          Process factors of 2: Jacobi(2,b)=-1 if b=3,5 (mod 8) 
 //                a = a/2;
 //                if((b % 8)==3 || (b & 8)==5)
 //                    j=-j;
 //
 //            }
-//      /* Quadratic reciprocity: Jacobi(a,b)=-Jacobi(b,a) if a=3,b=3 (mod 4) */
+//       Quadratic reciprocity: Jacobi(a,b)=-Jacobi(b,a) if a=3,b=3 (mod 4) 
 //           // In other words, (a|n)= (n|a), unless a = n = 3 (mod 4), in which case (a|n) = -(n|a).
 //          temp = a;
 //          a = b;
@@ -172,12 +248,10 @@ public class QuadraticSieve {
 //
 //    Output: all i such that A[i] is true.
 
-    public QuadraticSieve() {
-            //alg();
-        }
+ 
 
 
-
+*/
 
 
 }
