@@ -1,17 +1,9 @@
-<<<<<<< HEAD
+import sun.swing.BakedArrayList;
+
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-=======
-
-import java.util.ArrayList;
-
-import java.lang.*;
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-
->>>>>>> 5eee1a0d875c9cff1f7ff7425ba1947471831d62
 import java.lang.*;
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -27,7 +19,7 @@ public class Pollard {
 
     public static void main(String[] args) throws IOException {
         new Pollard();
-        //Pollard t = new Pollard();
+
 
     }
         public Pollard() throws IOException {
@@ -35,14 +27,21 @@ public class Pollard {
         }
 
         public void solveProblem() throws IOException {
-        BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
-        BigInteger n = new BigInteger(br.readLine());
-        arr= compositeFactor(n);
-        for(int i=0; i<arr.size();i++){
-            System.out.println(arr.get(i));
-
+        BufferedReader br= new BufferedReader(new FileReader("test.txt"));
+       // BigInteger n = new BigInteger(br.readLine());
+            String input="";
+        while((input=br.readLine())!=null) {
+            BigInteger n = new BigInteger(input);
+            arr = compositeFactor(n);
+            if(arr.size()==0)
+                System.out.println("Fail");
+          else    for (int i = 0; i < arr.size(); i++) {
+                System.out.println(arr.get(i));
+            }
+          //  n = new BigInteger(br.readLine());
+            arr=new ArrayList<BigInteger>();
+            System.out.println();
         }
-
         }
 
 //        if (n.bitLength() > 66) {
@@ -73,7 +72,7 @@ public class Pollard {
             // while( t.rh(n).compareTo(BigInteger.ZERO)==0)
             //   System.out.println("hej");  ;
 
-    
+
 
     public ArrayList<BigInteger> compositeFactor(BigInteger n){
 
@@ -84,8 +83,8 @@ public class Pollard {
 
         }
         if (n.bitLength() > 66) {
-            System.out.println("bigger than 66");
-            System.exit(1);
+
+            return arr;
         }
 
             if (n.isProbablePrime(20)) {
@@ -146,7 +145,6 @@ public class Pollard {
            return d;
     }
 
-<<<<<<< HEAD
 //    public int gcd(int a, int n) {
 //
 //        if (n == 0)
@@ -154,28 +152,6 @@ public class Pollard {
 //        return gcd(n, a % n);
 //
 //    }
-=======
-}
-/*public class QuadraticSieve {
-    static ArrayList<Integer> prim = new ArrayList<>();
-    public static void main(String[] args) {
-
-        QuadraticSieve test = new QuadraticSieve();
-        int bSmooth = test. b_Smooth();
-        test.SieveOfEratosthenes(bSmooth);
-        for(int i=1; i<prim.size(); i++){
-
-           int value= test.Jacobi(87463,prim.get(i));
-           if(value!=1) {
-               prim.remove(i);
-               i--;
-           }
-        }
-        // test.trial_division(6720);
-
-       System.out.println(prim.toString());
-
->>>>>>> 5eee1a0d875c9cff1f7ff7425ba1947471831d62
 
  /*   public int f(int x, int y) {
         return (x * x + 1) % y;
@@ -246,10 +222,4 @@ public class Pollard {
 
 
 */
-<<<<<<< HEAD
 }
-=======
-
-
-//}
->>>>>>> 5eee1a0d875c9cff1f7ff7425ba1947471831d62
